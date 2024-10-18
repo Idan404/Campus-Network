@@ -1,0 +1,160 @@
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!general device commands for S1 on Branch B
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!! other configs !!!!!!!!!!!!
+hostname Branch-B-S1
+no IP routing
+No IP domain lookup
+IP name-server 208.67.222.222
+IP domain-name abdi.corp
+
+!!!!!!!!!!!! spanning-tree !!!!!!!!!!!!
+spanning-tree mode PVST
+
+!!!!!!!!!!!! security !!!!!!!!!!!!
+Service password-encryption
+Login block-for 45 attempts 3 within 100
+Enable secret enablesecret
+username idan privilege 15 secret idansecret
+Crypto key generate RSA
+1024
+IP SSH version 2
+IP SSH authentication-retries 3
+IP SSH time-out 60
+
+IP DHCP snooping
+IP DHCP snooping VLAN 1-4094
+
+Banner MOTD $
+Attention!
+We will be having scheduled system maintenance on this device.
+$
+
+Banner login $
+Warning!
+Authorized personnel only.
+$
+
+!!!!!!!!!!!! ACL's !!!!!!!!!!!!
+ip access-list extended 199
+  permit tcp 10.0.0.0 0.0.0.15 any eq 22
+  permit tcp 10.0.0.16 0.0.0.15 any eq 22
+  permit tcp 10.0.0.32 0.0.0.15 any eq 22
+  Exit
+
+!!!!!!!!!!!! Line VTY  !!!!!!!!!!!!
+Line VTY 0 4
+  access-class 199 in
+  Exec-timeout 7
+  password vtypassword
+  Logging synchronous
+  Login local
+  transport input SSH
+  Exit
+
+!!!!!!!!!!!! Line console !!!!!!!!!!!!
+Line console 0
+  Exec-timeout 7
+  password consolepassword
+  Logging synchronous
+  Login local
+  Exit
+
+!!!!!!!!!!!! VLANS & int VLAN !!!!!!!!!!!!
+interface VLAN 1
+  no IP address
+  shutdown
+
+interface VLAN 99
+  no shutdown
+  IP address 10.0.0.19 255.255.255.240
+  Exit
+
+VLAN 10
+  name Finance-Branch-A
+VLAN 20
+  name IT-Branch-A
+VLAN 99
+  name MGMT-Branch-A
+VLAN 999
+  name Black Hole
+  Exit
+
+!!!!!!!!!!!! interfaces !!!!!!!!!!!!
+IP default-gateway 10.0.0.17
+
+!!!! Branch-B-S1 (E0/0) <==> Branch-B-R1 (E0/1) !!!!
+interface Ethernet0/0
+  no shutdown
+  duplex full
+  description S1(E0/0)<->R1(E0/1)
+  switchport trunk encapsulation dot1q
+  switchport mode trunk
+  switchport trunk native VLAN 99
+  switchport nonegotiate
+  IP DHCP snooping trust
+
+!!!! Branch-B-S1 (E0/1) <==> PC5 !!!!
+interface Ethernet0/1
+  no shutdown
+  description S1(E0/1)<->PC5
+  switchport access VLAN 10
+  switchport mode access
+  switchport nonegotiate
+  switchport port-security
+  switchport port-security violation restrict
+  switchport port-security mac-address sticky
+  switchport port-security max 1
+  IP DHCP snooping trust
+  IP DHCP snooping limit rate 5
+  spanning-tree Bpduguard enable
+  spanning-tree Portfast edge
+
+!!!! Branch-B-S1 (E0/2) <==> PC6 !!!!
+interface Ethernet0/2
+  no shutdown
+  description S1(E0/2)<->PC6
+  switchport access VLAN 20
+  switchport mode access
+  switchport nonegotiate
+  switchport port-security
+  switchport port-security violation restrict
+  switchport port-security mac-address sticky
+  switchport port-security max 1
+  IP DHCP snooping trust
+  IP DHCP snooping limit rate 5
+  spanning-tree Bpduguard enable
+  spanning-tree Portfast edge
+
+!!!! Branch-B-S1 (E1/0) <==> Admin-PC2 !!!!
+interface Ethernet1/0
+  no shutdown
+  description S1(E0/2)<->AdminPC2
+  switchport access VLAN 99
+  switchport mode access
+  switchport nonegotiate
+  switchport port-security
+  switchport port-security violation restrict
+  switchport port-security mac-address sticky
+  switchport port-security max 5
+  IP DHCP snooping trust
+  IP DHCP snooping limit rate 5
+  spanning-tree Bpduguard enable
+  spanning-tree Portfast edge
+  Exit
+
+!!!! all inactive interfaces !!!!
+int range E0/3, E1/1-3, E2/0-3, E3/0-3
+  shutdown
+  description Not in use
+  switchport access VLAN 999
+  switchport mode access
+  switchport nonegotiate
+  switchport port-security
+  switchport port-security violation restrict
+  switchport port-security mac-address sticky
+  switchport port-security max 1
+  IP DHCP snooping limit rate 5
+  spanning-tree Bpduguard enable
+  spanning-tree Portfast edge
+  Exit

@@ -1,0 +1,12 @@
+---
+
+- name: COPY WRITE CONFIGURATION ON ALL NODES
+  hosts: all-nodes
+  gather_facts: false
+
+  tasks:
+    - name: SAVE RUNNNING TO STARTUP_CONFIG
+      ios_config:
+        save_when: modified
+
+...

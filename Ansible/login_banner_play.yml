@@ -1,0 +1,49 @@
+---
+
+- name: DEPLOY LOGIN BANNER BRANCH A
+  hosts: Branch-A-Nodes
+  gather_facts: false
+
+  tasks:
+    - name: DEPLOY LOGIN BANNER BRANCH A
+      ios_banner:
+        banner: login
+        text: "{{ lookup('file', './MOTDs/the_cat_network.txt') }}"
+        state: present
+
+    - name: SAVE RUNNNING TO STARTUP_CONFIG
+      ios_config:
+        save_when: modified
+
+
+- name: DEPLOY LOGIN BANNER BRANCH B
+  hosts: Branch-B-Nodes
+  gather_facts: false
+
+  tasks:
+    - name: DEPLOY LOGIN BANNER BRANCH B
+      ios_banner:
+        banner: login
+        text: "{{ lookup('file', './MOTDs/starwars_network.txt') }}"
+        state: present
+
+    - name: SAVE RUNNNING TO STARTUP_CONFIG
+      ios_config:
+        save_when: modified
+
+- name: DEPLOY LOGIN BANNER BRANCH C
+  hosts: Branch-C-Nodes
+  gather_facts: false
+
+  tasks:
+    - name: DEPLOY LOGIN BANNER BRANCH C
+      ios_banner:
+        banner: login
+        text: "{{ lookup('file', './MOTDs/the-router-renaissance.txt') }}"
+        state: present
+
+    - name: SAVE RUNNNING TO STARTUP_CONFIG
+      ios_config:
+        save_when: modified
+
+...

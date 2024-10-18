@@ -1,0 +1,63 @@
+
+#### Branch A ####
+
+[Branch-A-routers]
+CSR-1-A ansible_host=10.0.0.100
+CSR-2-A ansible_host=10.0.0.110
+
+[Branch-A-Distribution_switches]
+DSW1-A ansible_host=10.0.0.2
+DSW2-A ansible_host=10.0.0.3
+
+[Branch-A-Access_switches]
+SW1-A ansible_host=10.0.0.4
+SW2-A ansible_host=10.0.0.5
+
+[Branch-A-Nodes:children]
+Branch-A-routers
+Branch-A-Distribution_switches
+Branch-A-Access_switches
+
+#### Branch B ####
+
+[Branch-B-routers]
+CSR-1-B ansible_host=10.0.0.120
+
+[Branch-B-Access_switches]
+SW1-B ansible_host=10.0.0.19
+
+[Branch-B-Nodes:children]
+Branch-B-routers
+Branch-B-Access_switches
+
+
+#### Branch C ####
+
+[Branch-C-routers]
+CSR1-C ansible_host=10.0.0.130
+
+[Branch-C-Access_switches]
+SW1-C ansible_host=10.0.0.35
+
+[Branch-C-Nodes:children]
+Branch-C-routers
+Branch-C-Access_switches
+
+#all nodes
+[all-nodes:children]
+Branch-A-routers
+Branch-A-Distribution_switches
+Branch-A-Access_switches
+Branch-B-routers
+Branch-B-Access_switches
+Branch-C-routers
+Branch-C-Access_switches
+
+[all-nodes:vars]
+ansible_connection=network_cli
+ansible_network_os=ios
+ansible_user=idan
+ansible_password=idansecret
+#ansible_become=true
+#ansible_become_method=enable
+#ansible_become_password=enablepassword

@@ -1,0 +1,8 @@
+        .---.
+       / _ \
+      | | | |   WARNING:
+      | | | |   You are entering restricted territory.
+      |_| |_|   Only authorized personnel are permitted.
+
+      These are not the routers you're looking for.
+      Move along.

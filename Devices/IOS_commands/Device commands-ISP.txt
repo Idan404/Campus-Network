@@ -1,0 +1,38 @@
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!general device commands for ISP hub
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!! other configs !!!!!!!!!!!!
+hostname ISP
+
+!!!!!!!!!!!! interfaces !!!!!!!!!!!!
+
+!!!! ISP (E0/0) <==> Branch-A-R1 (E0/0) !!!!
+interface Ethernet0/0
+  no shutdown
+  duplex full
+  description ISP(E0/0)<>AR1(E0/0)
+
+!!!! ISP (E0/1) <==> Branch-A-R2 (E0/0) !!!!
+interface Ethernet0/1
+  no shutdown
+  duplex full
+  description ISP(E01)<>AR2(E0/0)
+
+!!!! ISP (E0/2) <==> Branch-B-R1 (E0/0) !!!!
+interface Ethernet0/2
+  no shutdown
+  duplex full
+  description ISP(E02)<>BR1(E0/0)
+
+!!!! ISP (E0/3) <==> Branch-B-R1 (E0/0) !!!!
+interface Ethernet0/3
+  no shutdown
+  duplex full
+  description ISP(E00)<>CR1(E0/0)
+
+!!!! all inactive interfaces !!!!
+int range E1/0-3, E2/0-3, E3/0-3
+shutdown
+duplex full
+description Not in use
+Exit
