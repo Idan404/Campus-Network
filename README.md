@@ -21,7 +21,7 @@
   <a href="#key-features">Key Features</a> •
   <a href="#contributing">Contributing</a> 
 </p>
-![screenshot](X.gif)
+   <img src="/Images/README images/Ansible running.gif">
 
 
 ## Basic Overview
