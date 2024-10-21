@@ -75,4 +75,3 @@ The network is equipped with the following features:
 * coming up next
   - How to install & Use GNS3 and common troubleshooting.
   - More GNS3 networks using differents Dynamic Routing Protocols, such as EIGRP, BGP...
-  - If you liked this Project and want to try it please watch my upcoming Repository of how to install and use GNS3
