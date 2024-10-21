@@ -1,6 +1,6 @@
 <h1 align="center">
   <br>
-  <img src="Images/README images/Network_Automation.png" alt="Network Automation" width="500">
+  <img src="Images/README images/Network_Automation2.png" alt="Network Automation" width="1000">
   <br>
   Network Automation Project - ITQ College
   <br>
@@ -9,13 +9,13 @@
 <h4 align="center">Ansible - Advertise Masage of the day on Cisco-IOS network devices in a Campus design.</h4>
 
 <p align="center">
-    <img src="/Images/README images/Ansible running2.gif">
-</p>
-
-<p align="center">
   <a href="#basic-overview">Basic Overview</a> •
   <a href="#key-features">Key Features</a> •
   <a href="#contributing">Contributing</a> 
+</p>
+
+<p align="center">
+    <img src="/Images/README images/Ansible running2.gif">
 </p>
 
 ## Basic Overview
