@@ -2,18 +2,14 @@
   <br>
   <img src="Images/README images/Network_Automation.png" alt="Network Automation" width="500">
   <br>
-  Network Automation Project
+  Network Automation Project - ITQ College
   <br>
 </h1>
 
 <h4 align="center">Ansible - Advertise Masage of the day on Cisco-IOS network devices in a Campus design.</h4>
 
 <p align="center">
-  
-<a href="">
-   <img src="https://img.shields.io/github/contributors/MrMeeseeks404/Campus-Network">
-</a>
-  
+    <img src="/Images/README images/Ansible running2.gif">
 </p>
 
 <p align="center">
@@ -21,12 +17,10 @@
   <a href="#key-features">Key Features</a> •
   <a href="#contributing">Contributing</a> 
 </p>
-   <img src="/Images/README images/Ansible running.gif">
-
 
 ## Basic Overview
 * This repository contains the network automation project that showcases the design, configuration, and security of a multi-branch organizational network, utilizing various technologies such as OSPF, GRE over IPsec, VLANs, and Ansible Automation playbook.
-  -  you can find a PPTX file (slide-show) in the doc folder for more detailed description of the project.
+  -  you can find a PPTX (slide-show) file in the doc folder for more detailed description of the project.
   
 * The network consists of 3 branches (1 main branch and 2 secondary branches) connected via an ISP for general access. The network includes:
   - Main Branch (A):
@@ -38,7 +32,7 @@
     - One switch and one router each, serving as DHCP servers and gateways using Router on a Stick (ROAS).
 
 * Topology image:
-![Project Topology](Images/topology/project%20take%203.png)
+![Project Topology](Images/topology/2.png)
 
 
 ## Key Features
@@ -81,3 +75,4 @@ The network is equipped with the following features:
 * coming up next
   - How to install & Use GNS3 and common troubleshooting.
   - More GNS3 networks using differents Dynamic Routing Protocols, such as EIGRP, BGP...
+  - If you liked this Project and want to try it please watch my upcoming Repository of how to install and use GNS3
